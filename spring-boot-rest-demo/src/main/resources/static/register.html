@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(function() {
+		$("#frm").submit(function(evt) {
+		evt.preventDefault();
+		var obj = {
+				name : $("#name").val(),
+				age: $("#age").val(),
+				email : $("#email").val()
+		}
+		
+		$.ajax({
+			 url: '/register',
+			method: 'POST',
+            data : JSON.stringify(obj), //the data we want to send
+            contentType : 'application/json',
+            success : function(response) {
+            	alert(JSON.stringify(response));
+            }
+			
+			})
+		})
+	})
+
+</script>
+</head>
+<body>
+<form id="frm">
+
+		Enter name: <input id="name" /> <br/>
+		Enter age: <input id="age" /> <br/>
+		Enter email: <input id="email" /> <br/>
+		<button type="submit">Register</button>
+</form>
+</body>
+</html>
